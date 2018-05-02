@@ -9,5 +9,11 @@ class HMA(QuadraticProbing):
         self.values[key] = AvlTree() if self.values[key] is None else self.values[key]
         self.values[key].insert(data)
         self._keys[key] = self.values[key].nodes
+
+    def balanced_factor_cell(self, cell):
+        return cell[0].getHeight()
+    
+    
+            
     
     

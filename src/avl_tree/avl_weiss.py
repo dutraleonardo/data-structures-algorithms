@@ -103,6 +103,13 @@ class BinaryTree(object):
         print('\n' + '\n'.join((line.rstrip() for line in lines)))
 
 class AVL(BinaryTree):
+    """
+        from avl_tree.avl_weiss import AVL as avl_tree
+
+       >> tree = avl_tree(display=False)
+       >> root = tree.createFromList([45,89,56,20,2,4,9])
+       >> tree.display_tree(root)
+    """
     def __init__(self, content="EmptyNode", display=True):
         self._height = 0
         super(self.__class__, self).__init__(content, display)
@@ -119,7 +126,8 @@ class AVL(BinaryTree):
         for item in in_list:
             if self.display is True:
                 print('\n inserting {0}\n'.format(item))
-                res = res.insert(item)
+            res = res.insert(item)
+            if self.display is True:
                 self.__class__.display_tree(res)
         return res
 
@@ -241,6 +249,7 @@ class AVL(BinaryTree):
         3
         """
         # When input_tree is an empty tree
+            
         if self.val == "EmptyNode":
             self.val = content
             # self.root = self
