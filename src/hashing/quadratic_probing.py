@@ -10,8 +10,7 @@ class QuadraticProbing(HashTable):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.lim_charge = self._lim_charge_func()
-        
-
+    
     def _lim_charge_func(self):
         return len(self.values) // 2 + 1
 

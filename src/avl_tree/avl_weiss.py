@@ -12,6 +12,23 @@ class BinaryTree(object):
         self.left = None
         self.right = None
         self.display = display
+        self.nodes = []
+
+    def __str__(self):
+        return self.__class__.display_tree(self, False)
+        
+    def _set_nodes_list(self):
+        if len(self.nodes) > 0:
+            self.nodes.clear()        
+        self._preorder_in_list_nodes(self)
+        return self.nodes
+
+    def _preorder_in_list_nodes(self, node):
+        self.nodes.append(node.val)
+        if node.left is not None:
+            self._preorder_in_list_nodes(node.left)
+        if node.right is not None:
+            self._preorder_in_list_nodes(node.right)
 
     @classmethod
     def _build_tree_string(cls, root, curr_index, index=False, delimiter='-'):
@@ -98,9 +115,13 @@ class BinaryTree(object):
         return new_box, len(new_box[0]), new_root_start, new_root_end
 
     @classmethod
-    def display_tree(cls, tree):
+    def display_tree(cls, tree, return_st=False):
         lines = cls._build_tree_string(tree, 0, False, '-')[0][:-1]
-        print('\n' + '\n'.join((line.rstrip() for line in lines)))
+        tree_string = '\n' + '\n'.join((line.rstrip() for line in lines))
+        if return_st is not False:
+            return tree_string
+        print(tree_string)
+
 
 class AVL(BinaryTree):
     """
@@ -285,6 +306,7 @@ class AVL(BinaryTree):
             # Keep searching through right subtree
         # Operation on height
         self._height = max(AVL.getHeight(self.left), AVL.getHeight(self.right)) + 1
+        self._set_nodes_list()
         return self
 
     def _deleteMin(self, p_node):
