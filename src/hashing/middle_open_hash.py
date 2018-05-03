@@ -21,27 +21,40 @@ class HMA(HashTable):
     def _insert_presentation(self, *kwargs):
         super().__init__(*kwargs)
         self._avl_insert_presentation(kwargs['key'])
+    
+    def _is_tree(self, cell):
+        return (cell is not None and cell is isinstance(AvlTree))
 
     def balanced_factor_cell(self, cell):
-        return cell[0].getHeight()
-    
+        if self._is_tree(cell):
+            return cell.__class__.getHeight(cell[0])
+        return 0
+
     def _lim_charge_func(self):
         return len(self.values) // 2 + 1
     
+    def _list_nodes_cell(self, cell):
+        if self._is_tree(cell):
+            return cell.nodes
+        return None
+
     def rehashing(self):
         pass
-
-
+    
     def _colision_resolution(self, key, data=None):
         i = 1
         new_key = self.hash_function(key + i*i)
 
         while self.values[new_key] is not None \
                 and self.values[new_key] != key:
-            i += 1
             new_key = self.hash_function(key + i*i) if \
-                (self.values.count(None) <= self.lim_charge or 
-                self.values[new_key].getHeight(self.values[new_key]) < self.lim_charge) else None
+            (
+                self.values.count(None) <= self.lim_charge 
+                or
+                self.balanced_factor_cell(self.values[new_key]) < self.lim_charge 
+                or 
+                data in self._list_nodes_cell(self.values[new_key])
+            ) else None
             
             if new_key is not None:
                 break
