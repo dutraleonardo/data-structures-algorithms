@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
-
 from .hash_table import HashTable
-
 
 class QuadraticProbing(HashTable):
     """
@@ -22,7 +20,8 @@ class QuadraticProbing(HashTable):
                 and self.values[new_key] != key:
             i += 1
             new_key = self.hash_function(key + i*i) if \
-                self.values.count(None) <= self.lim_charge else None
+            self.values.count(None) <= self.lim_charge \
+                and i < self.lim_charge else None
             
             if new_key is not None:
                 break

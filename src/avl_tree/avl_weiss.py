@@ -15,7 +15,7 @@ class BinaryTree(object):
         self.nodes = []
 
     def __str__(self):
-        return self.__class__.display_tree(self, False)
+        return self.__class__.display_tree(self, True)
         
     def _set_nodes_list(self):
         if len(self.nodes) > 0:

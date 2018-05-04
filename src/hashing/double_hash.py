@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from .hash_table import HashTable
-from .number_theory.prime_numbers import next_prime, check_prime
+from .number_theory.prime_numbers import next_prime
 
 
 class DoubleHash(HashTable):
@@ -33,7 +33,7 @@ class DoubleHash(HashTable):
                 break
             
             else:
-                if (i == 1):
+                if i == 1:
                     print("r = {0}".format(r))
                 new_key = self.__hash_double_function(new_key, data, i)
                 if self.values[new_key] is not None and self.values[new_key] != key:
