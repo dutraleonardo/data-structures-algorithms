@@ -13,6 +13,8 @@ class HMA(QuadraticProbing):
         self.values[key] = AvlTree(display=False) if self.values[key] is None else self.values[key]
         self.values[key] = self.values[key].insert(data)
         self._keys[key] = self.values[key].nodes
+        print('{0} insert in bucket {1}'.format(data, key))
+        print(self)
 
     def _insert_presentation(self, **kwargs):
         super()._insert_presentation(**kwargs)
@@ -56,7 +58,7 @@ class HMA(QuadraticProbing):
             self.values[key].find(data) is None
             and
             len(self.values[key].nodes) < self._maximun_nodes_avl_with_height(self.charge_factor)):
-            print('{0} insert in bucket {1}'.format(data, key))
+            # print('{0} insert in bucket {1}'.format(data, key))
             return key
 
         i = 1
@@ -78,13 +80,13 @@ class HMA(QuadraticProbing):
                 new_key = None
 
             if new_key is not None:
-                print('{0} insert in bucket {1}'.format(data, new_key))
+                # print('{0} insert in bucket {1}'.format(data, new_key))
                 return new_key
 
             elif new_key is None or (new_key is None and self.with_rehashing is True):
                 break
 
-        print('{0} insert in bucket {1}'.format(data, new_key))
+        # print('{0} insert in bucket {1}'.format(data, new_key))
         return new_key
 
 

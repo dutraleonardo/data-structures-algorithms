@@ -31,6 +31,9 @@ class HashTable:
     def keys(self):
         return self._keys
 
+    def __str__(self):
+        return self._mount_table()
+
     def balanced_factor(self):
         return sum([1 for slot in self.values
                     if slot is not None]) / (self.size_table * self.charge_factor)
@@ -64,6 +67,7 @@ class HashTable:
         self.values[key] = data
         self._keys[key] = data
         print('{0} insert in bucket {1}'.format(data, key))
+        print(self)
 
     def _colision_presentation(self, **kwargs):
         return 'colision: {data} mod {size_table} = {new_key}'.format(**kwargs)
@@ -79,13 +83,21 @@ class HashTable:
 
             if self.values.count(None) > 0 and self.values[new_key] is not None \
                     and self.values[new_key] != key:
-                # self._colision_presentation(data, self.size_table, new_key)
+                print(self._colision_presentation(data=data, size_table=self.size_table, new_key=new_key))
                 new_key = self.hash_function(new_key + 1)
             else:
                 new_key = None
                 break
 
         return new_key
+
+    def delete_value(self, value):
+        try:
+            index = self.values.index(value)
+            self.values[index] = None
+            return index
+        except ValueError:
+            return None
 
     def rehashing(self):
         survivor_values = [value for value in self.values if value is not None]
@@ -112,7 +124,6 @@ class HashTable:
             new_key = self._colision_resolution(key, data)
             if new_key is not None:
                 self._set_value(new_key, data)
-                # print(self._mount_table())
             elif new_key is None and self.with_rehashing is True:
                 self.rehashing()
                 self.insert_data(data)

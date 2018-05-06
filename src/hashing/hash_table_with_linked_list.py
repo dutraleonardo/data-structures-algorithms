@@ -12,6 +12,8 @@ class HashTableWithLinkedList(HashTable):
         self.values[key] = deque([]) if self.values[key] is None else self.values[key]  
         self.values[key].appendleft(data)
         self._keys[key] = self.values[key]
+        print('{0} insert in bucket {1}'.format(data, key))
+        print(self)        
 
     def balanced_factor(self):
         return sum([self.charge_factor - len(slot) for slot in self.values if slot is not None])\
@@ -23,6 +25,17 @@ class HashTableWithLinkedList(HashTable):
                 and self.values.count(None) == 0):
             return key
         return super()._colision_resolution(key, data)
+
+    def delete_value(self, value):
+        def _delete_in_list(self, cell, value):
+            try:
+                cell.remove(value)
+            except ValueError:
+                return None
+
+        for cell in [index for index in self.values if index is not None]:
+            if _delete_in_list(self, cell, value) is not None:
+                break                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
 
     def _decompose_linked_list(self):
         table = [
