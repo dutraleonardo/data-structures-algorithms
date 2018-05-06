@@ -58,13 +58,12 @@ class HashTable:
     def bulk_insert(self, values):
         i = 1
         self.__aux_list = values
-        # map(self.insert_data())
         [self.insert_data(value) for value in values]
-        print(self._mount_table())
 
     def _set_value(self, key, data):
         self.values[key] = data
         self._keys[key] = data
+        print('{0} insert in bucket {1}'.format(data, key))
 
     def _colision_presentation(self, **kwargs):
         return 'colision: {data} mod {size_table} = {new_key}'.format(**kwargs)
@@ -93,6 +92,7 @@ class HashTable:
         self.size_table = next_prime(self.size_table, factor=2)
         self._keys.clear()
         self.values = [None] * self.size_table #hell's pointers D: don't DRY ;/
+        print("rehashing new size table value => {0}".format(self.size_table))
         map(self.insert_data, survivor_values)
 
     def _insert_presentation(self, key, data, **kwargs):
@@ -103,20 +103,18 @@ class HashTable:
 
         if self.values[key] is None:
             self._set_value(key, data)
-            # print(self._insert_presentation(data=data, size_table=self.size_table, key=key))
             return key, data
 
-        # elif self.values[key] == data:
-        #     pass
+        elif self.values[key] == data:
+            pass
 
         else:
             new_key = self._colision_resolution(key, data)
             if new_key is not None:
                 self._set_value(new_key, data)
-                # print(self._insert_presentation(data=data, key=new_key))
+                # print(self._mount_table())
             elif new_key is None and self.with_rehashing is True:
                 self.rehashing()
-                print("rehashing {0}".format(self.size_table))
                 self.insert_data(data)
             else:
                 pass

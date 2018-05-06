@@ -21,7 +21,7 @@ class DoubleHash(HashTable):
     def _colision_presentation(self, **kwargs):
         return 'colision: ({i}*{r}) mod {size_table} = {new_key}'.format(**kwargs)#i, r, self.size_table, new_key)
 
-    def _colision_resolution(self, key, data=None ):
+    def _colision_resolution(self, key, data=None):
         i = 1
         print('colision: {0} mod {1} = {2}'.format(data, len(self.values), key))
         new_key = self.hash_function(data)
@@ -41,5 +41,5 @@ class DoubleHash(HashTable):
                             i=i, r=r, size_table=self.size_table, new_key=new_key))
                 i += 1  
                 
-        print("{0} insert in bucket {1}".format(data, new_key))
+        # print("{0} insert in bucket {1}".format(data, new_key))
         return new_key
