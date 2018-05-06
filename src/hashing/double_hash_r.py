@@ -4,7 +4,7 @@ from .hash_table import HashTable
 from .number_theory.prime_numbers import next_prime
 
 
-class DoubleHash(HashTable):
+class DoubleHashR(HashTable):
     """
         Hash Table example with open addressing and Double Hash
     """
@@ -28,6 +28,7 @@ class DoubleHash(HashTable):
         r = self.__r(data)
         
         while self.values[new_key] is not None and self.values[new_key] != key:
+            
             if self.balanced_factor() >= self.lim_charge:
                 new_key = None
                 break
@@ -35,11 +36,12 @@ class DoubleHash(HashTable):
             else:
                 if i == 1:
                     print("r = {0}".format(r))
+                
                 new_key = self.__hash_double_function(new_key, data, i)
+                
                 if self.values[new_key] is not None and self.values[new_key] != key:
                     print(self._colision_presentation(
                             i=i, r=r, size_table=self.size_table, new_key=new_key))
                 i += 1  
-                
-        # print("{0} insert in bucket {1}".format(data, new_key))
+
         return new_key

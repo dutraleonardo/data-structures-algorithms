@@ -368,6 +368,8 @@ class AVL(BinaryTree):
         # There exists EmptyNode in the tree only at ROOT of the Tree
         after_deletion = _delete(self, match)
         if after_deletion:
+            index_value = self.nodes.index(match)
+            del(index_value)
             return after_deletion
         else:
             return AVL()        

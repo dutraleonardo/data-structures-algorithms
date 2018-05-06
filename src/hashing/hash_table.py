@@ -67,7 +67,7 @@ class HashTable:
         self.values[key] = data
         self._keys[key] = data
         print('{0} insert in bucket {1}'.format(data, key))
-        print(self)
+        # print(self)
 
     def _colision_presentation(self, **kwargs):
         return 'colision: {data} mod {size_table} = {new_key}'.format(**kwargs)
@@ -128,7 +128,7 @@ class HashTable:
                 self.rehashing()
                 self.insert_data(data)
             else:
-                pass
+                print("\n*-*-*-*- Element {0} couldn't be inserted ! -*-*-*-*\n".format(data))
 
         
 

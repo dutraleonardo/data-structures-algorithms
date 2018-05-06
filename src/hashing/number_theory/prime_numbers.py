@@ -16,15 +16,11 @@ def check_prime(number):
             
         return all([number % i for i in range(2, number)])
 
-
 def next_prime(value, factor=1, **kwargs):
     value = factor * value
     first_value_val = value
+    value += 1 if not ("desc" in kwargs.keys() and kwargs["desc"] is True) else -1
     
-    while not check_prime(value):
-        value += 1 if not ("desc" in kwargs.keys() and kwargs["desc"] is True) else -1
-
-    if value == first_value_val:
-        print('next => %d' % value)
-        return next_prime(value + 1, **kwargs)
+    if not check_prime(value):
+        return next_prime(value, **kwargs)
     return value

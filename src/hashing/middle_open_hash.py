@@ -29,6 +29,21 @@ class HMA(QuadraticProbing):
             return cell.__class__.getHeight(cell)
         return 0
 
+    def delete_value(self,value):
+        
+        def _delete_in_tree(self, tree, value):
+            try:
+                tree.delete(value)
+                return tree 
+            except ValueError:
+                return None
+
+        for tree in [index for index in self.values if index is not None]:
+            if _delete_in_tree(self, tree, value) is not None:
+                return value
+            else:
+                return None
+
     def _list_cells_with_height_equal_charge_factor(self):
         list_heights_trees = [tree for tree in self.values \
         if tree is not None and self.balanced_factor_cell(tree) == self.charge_factor]
