@@ -144,12 +144,16 @@ class AVL(BinaryTree):
         if not in_list:
             return AVL()
         length, res = len(in_list), self.__class__(display=self.display)
+        list_items = []
         for item in in_list:
             if self.display is True:
                 print('\n inserting {0}\n'.format(item))
-            res = res.insert(item)
-            if self.display is True:
+            if item not in list_items:
+                res = res.insert(item)
                 self.__class__.display_tree(res)
+                list_items.append(item)
+            else:
+                print("This value is already in the Tree!")
         return res
 
     @classmethod
@@ -173,7 +177,7 @@ class AVL(BinaryTree):
         >>> test = range(20)
         >>> random.shuffle(test)
         >>> bst = AVL.createFromList(test)
-        >>> for x in xrange(20):
+        >>> for x in range(20):
         ...     res = bst.find(x)
         ...     if res and res.val == x:
         ...         continue
@@ -260,7 +264,7 @@ class AVL(BinaryTree):
         """
         Should be called as avl = avl.insert()
 
-        >>> avl = AVL.createFromList(xrange(1,8))
+        >>> avl = AVL.createFromList(range(1,8))
         >>> print AVL.getHeight(avl)
         2
         >>> avl = avl.insert(15)
@@ -331,11 +335,11 @@ class AVL(BinaryTree):
 
         >>> my_avl = AVL()
         >>> item_set = range(20)
-        >>> for i in xrange(4):
+        >>> for i in range(4):
         ...     random.shuffle(item_set)
         ...     for item in item_set:
         ...         my_avl = my_avl.insert(item)
-        ...     for i in xrange(20):
+        ...     for i in range(20):
         ...         my_avl = my_avl.delete(i)
         ...     my_avl.display()
         ...
