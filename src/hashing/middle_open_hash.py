@@ -20,6 +20,10 @@ class HMA(QuadraticProbing):
         super()._insert_presentation(**kwargs)
         self._avl_insert_presentation(kwargs["key"])
 
+    def balanced_factor(self):
+        list_cells = [self.balanced_factor_cell(cell) + 1 for cell in self.values if cell is not None]
+        return sum(list_cells)/(self.size_table * self.charge_factor)
+
     def _is_tree(self, cell):
         return True if isinstance(cell, AvlTree) else False
         # return (cell is not None) and (cell is isinstance(cell, AvlTree))

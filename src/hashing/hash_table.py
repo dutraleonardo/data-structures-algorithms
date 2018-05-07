@@ -1,13 +1,5 @@
 #!/usr/bin/env python3
-<<<<<<< HEAD
-<<<<<<< HEAD
-from number_theory.prime_numbers import next_prime
-=======
 from .number_theory.prime_numbers import next_prime
->>>>>>> hma
-=======
-from .number_theory.prime_numbers import next_prime
->>>>>>> hma
 from terminaltables import AsciiTable
 
 class HashTable:
@@ -16,15 +8,7 @@ class HashTable:
         This class works as father of other hash table variations
     """
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    def __init__(self, size_table, charge_factor=None, lim_charge=None):
-=======
     def __init__(self, size_table, charge_factor=None, lim_charge=None, rehashing=False):
->>>>>>> hma
-=======
-    def __init__(self, size_table, charge_factor=None, lim_charge=None, rehashing=False):
->>>>>>> hma
         """
 
         :param size_table: recommended a prime number
@@ -36,23 +20,8 @@ class HashTable:
         self.lim_charge = 0.75 if lim_charge is None else lim_charge
         self.charge_factor = 1 if charge_factor is None else charge_factor
         self.__aux_list = []
-<<<<<<< HEAD
-<<<<<<< HEAD
         self._keys = {} # the result of hash_function operation
-=======
-=======
->>>>>>> hma
-        self._keys = {}
         self.with_rehashing = rehashing
-        # the result of hash_function operation
-        [self._initialize_keys(index) for index in range(self.size_table)]
-
-    def _initialize_keys(self, index):
-        self._keys[index] = None
-<<<<<<< HEAD
->>>>>>> hma
-=======
->>>>>>> hma
 
     def keys(self):
         return self._keys
@@ -66,54 +35,23 @@ class HashTable:
 
     def hash_function(self, key):
         """
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> hma
-=======
->>>>>>> hma
         :param key: value of slot
         :return: a key that represent the position of key-value in array
         """
         return key % self.size_table
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    def mount_table(self):
-=======
     def _mount_table(self):
->>>>>>> hma
-=======
-    def _mount_table(self):
->>>>>>> hma
         table = [
             [index for index in range(len(self.values))],
             [value for value in self.values]
         ]
         return AsciiTable(table).table
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-    def _step_by_step(self, step_ord):
-
-        print("step {0}".format(step_ord))
-        # print([i for i in range(len(self.values))])
-        # print(self.values)
-        print(self.mount_table())
-=======
-=======
->>>>>>> hma
 
     def _str_hash_function(self, data, key):
         return "{0} mod {1} = {2}".format(data, self.size_table, key)
 
     def _step_by_step(self, step_ord, data_insert_tuple):
         pass
-<<<<<<< HEAD
->>>>>>> hma
-=======
->>>>>>> hma
 
     def bulk_insert(self, values):
         i = 1
@@ -166,7 +104,7 @@ class HashTable:
 
     def _insert_presentation(self, key, data, **kwargs):
         return 'insert {0} in bucket {1}'.format(data, key)
-
+    
     def insert_data(self, data):
         key = self.hash_function(data)
 

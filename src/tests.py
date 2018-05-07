@@ -49,11 +49,19 @@ def test_insert_delete_hma(size_table, charge_factor, values_to_insert, values_t
             print('element {0} deleted'.format(value))
             print(hma)
         else:
-            print('element {0} not found'.format(value_t))
+            print('element {0} not found'.format(value))
 
+def test_balanced_factor_hma(size_table, charge_factor, values):
+    hma = test_insert_hma(size_table, charge_factor, values, rehashing=False)
+    print(hma.balanced_factor())
 
+def test_balanced_factor_linked_list_hash(size_table, charge_factor, values):
+    hash_linked_list = test_insert_hash_linked_list(size_table, charge_factor, values)
+    print(hash_linked_list.balanced_factor())
+
+print(test_balanced_factor_linked_list_hash(5, 3, [22, 43, 16,16, 44, 77, 62]))   
 # print(test_double_hash_th(29, [22, 43, 36, 16, 44, 77, 62, 32, 71, 31, 41, 27, 29, 19, 7, 14, 91, 81, 1]))
-# test_insert_hma(5,3, [6,4,8,21,37,59,16,13,6,8,11, 22,36,9,17,31,4,17,11,22,39,42,16,18], False)
+# test_insert_hma(5,2, [6,4,8,21,37,59,16,13,6,8,11, 22,36,9,17,31,4,17,11,22,39,42,16,18], True)
 # test_insert_hma(5,3, [61, 31, 41, 27, 18, 19, 7, 14, 9122, 43, 36, 16, 44, 77, 62, 32, 101, 1], False)
-test_insert_delete_hma(5,3, [61, 31, 41, 27, 18, 19, 7, 14, 9122, 43, 36, 16, 44, 77, 62, 32, 101, 1], 
-[36, 71, 7, 31])
+# test_insert_delete_hma(5,3, [61, 31, 41, 27, 18, 19, 7, 14, 9122, 43, 36, 16, 44, 77, 62, 32, 101, 1], 
+# [36, 71, 7, 31])

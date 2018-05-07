@@ -16,8 +16,10 @@ class HashTableWithLinkedList(HashTable):
         print(self)        
 
     def balanced_factor(self):
-        return sum([self.charge_factor - len(slot) for slot in self.values if slot is not None])\
-               / self.size_table * self.charge_factor
+        list_values = [self.charge_factor - len(cell) for cell in self.values if cell is not None]
+        return 1 - (sum(list_values)/(self.size_table * self.charge_factor))
+        # return sum([self.charge_factor - len(slot) for slot in self.values if slot is not None])\
+        #        / self.size_table * self.charge_factor
     
     def _colision_resolution(self, key, data=None):
 
