@@ -29,7 +29,7 @@ class DoubleHashR(HashTable):
         
         while self.values[new_key] is not None and self.values[new_key] != key:
             
-            if self.balanced_factor() >= self.lim_charge:
+            if i == self.size_table:
                 new_key = None
                 break
             

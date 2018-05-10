@@ -14,7 +14,7 @@ class HMA(QuadraticProbing):
         self.values[key] = self.values[key].insert(data)
         self._keys[key] = self.values[key].nodes
         print('{0} insert in bucket {1}'.format(data, key))
-        print(self)
+        # print(self)
 
     def _insert_presentation(self, **kwargs):
         super()._insert_presentation(**kwargs)
@@ -33,7 +33,7 @@ class HMA(QuadraticProbing):
             return cell.__class__.getHeight(cell)
         return 0
 
-    def delete_value(self,value):
+    def delete_value(self, value):
         
         def _delete_in_tree(self, tree, value):
             try:
@@ -41,12 +41,11 @@ class HMA(QuadraticProbing):
                 return tree 
             except ValueError:
                 return None
-
+        # _delete_in_tree(self, tree, value)
         for tree in [index for index in self.values if index is not None]:
             if _delete_in_tree(self, tree, value) is not None:
                 return value
-            else:
-                return None
+        return None
 
     def _list_cells_with_height_equal_charge_factor(self):
         list_heights_trees = [tree for tree in self.values \
