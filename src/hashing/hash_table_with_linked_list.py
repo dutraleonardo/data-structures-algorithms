@@ -13,11 +13,13 @@ class HashTableWithLinkedList(HashTable):
         self.values[key].appendleft(data)
         self._keys[key] = self.values[key]
         print('{0} insert in bucket {1}'.format(data, key))
-        print(self)        
+        #print(self)        
 
     def balanced_factor(self):
-        list_values = [self.charge_factor - len(cell) for cell in self.values if cell is not None]
-        return 1 - (sum(list_values)/(self.size_table * self.charge_factor))
+        balanced_factor_table = max([len(cell) for cell in self.values if cell is not None])
+        print(balanced_factor_table)
+        list_values = [balanced_factor_table - len(cell) for cell in self.values if cell is not None]
+        return 1 - (sum(list_values)/(self.size_table * balanced_factor_table))
         # return sum([self.charge_factor - len(slot) for slot in self.values if slot is not None])\
         #        / self.size_table * self.charge_factor
     
@@ -29,18 +31,14 @@ class HashTableWithLinkedList(HashTable):
         return super()._colision_resolution(key, data)
 
     def delete_value(self, value):
-        def _delete_in_list(self, cell, value):
-            try:
+        for cell in self.values:
+            if cell.count(value):
+                print('value %d has been removed !'%value)
                 cell.remove(value)
-            except ValueError:
-                return None
-
-        for cell in [index for index in self.values if index is not None]:
-            if _delete_in_list(self, cell, value) is not None:
-                return value                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-            else:
-                return None
-                
+                print(self)
+                return value
+        return None                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+        
     def _decompose_linked_list(self):
         table = [
             ["bucket", "linked_list_values"]

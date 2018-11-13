@@ -10,8 +10,8 @@ class QuadraticProbing(HashTable):
         self.lim_charge = self._lim_charge_func()
     
     def _lim_charge_func(self):
-        return len(self.values) // 2 + 1
-
+        return self.size_table // 2 + 1
+    
     def _colision_resolution(self, key, data=None):
         i = 1
         new_key = self.hash_function(key + i*i)
@@ -20,12 +20,13 @@ class QuadraticProbing(HashTable):
                 and self.values[new_key] != key:
             i += 1
             new_key = self.hash_function(key + i*i) if \
-            self.values.count(None) <= self.lim_charge \
-                and i < self.lim_charge else None
+            self.values.count(None) <= self.lim_charge else None#\
+                #and i < self.lim_charge else None
             
             if new_key is not None:
                 break
                 return new_key
             elif new_key is None or (new_key is None and self.with_rehashing is True):
                 break
+                return None
                 

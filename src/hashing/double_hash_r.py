@@ -8,8 +8,6 @@ class DoubleHashR(HashTable):
     """
         Hash Table example with open addressing and Double Hash
     """
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
 
     def __r(self, data):
         next_prime_gt = next_prime(len(self.values) // 2)
