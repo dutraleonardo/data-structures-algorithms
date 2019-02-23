@@ -6,6 +6,11 @@ The goal of this project is that be used like material study.
 
 * Python 3.5.2
 
+### Dependencie install
+ ```
+ $ pip install -r requirements/local.txt
+ ```
+
 ## Current Data Structures
 * Hashing ( Linear Probing, Quadratic Probing, Double Hash and hash with linked list)
 * Basic Binary search tree with display in shell
