@@ -112,6 +112,7 @@ class SplayTree:
             y.parent.left = x
         x.right = y
         y.parent = x
+        self.print_tree()
     
     def left_rotate(self, x, search_key):
         print(f"zag({search_key})")
@@ -128,6 +129,7 @@ class SplayTree:
             x.parent.right = y
         y.left = x
         x.parent = y
+        self.print_tree()
     
     def splay(self, node, search_key):
         while node.parent:
@@ -142,24 +144,20 @@ class SplayTree:
                 
                 if parent.left == node and grand.left == parent:  # Zig-Zig
                     print(f"zig-zig({search_key})")
-                    self.right_rotate(grand, search_key)
                     self.right_rotate(parent, search_key)
-                    self.print_tree()
+                    self.right_rotate(grand, search_key)
                 elif parent.right == node and grand.right == parent:  # Zag-Zag
                     print(f"zag-zag({search_key})")
+                    self.left_rotate(parent, search_key)
                     self.left_rotate(grand, search_key)
-                    self.left_rotate(parent, search_key)
-                    self.print_tree()
-                elif parent.right == node and grand.left == parent:  # Zig-Zag
+                elif parent.left == node and grand.right == parent:  # Zig-Zag
                     print(f"zig-zag({search_key})")
-                    self.left_rotate(parent, search_key)
-                    self.right_rotate(grand, search_key)
-                    self.print_tree()
-                else:  # Zag-Zig
-                    print(f"zag-zig({search_key})")
                     self.right_rotate(parent, search_key)
                     self.left_rotate(grand, search_key)
-                    self.print_tree()
+                else:  # Zag-Zig
+                    print(f"zag-zig({search_key})")
+                    self.left_rotate(parent, search_key)
+                    self.right_rotate(grand, search_key)
     
     def insert(self, key):
         print(f"\nInserting {key}")
