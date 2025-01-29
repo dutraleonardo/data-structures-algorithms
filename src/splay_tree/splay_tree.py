@@ -144,12 +144,12 @@ class SplayTree:
                 
                 if parent.left == node and grand.left == parent:  # Zig-Zig
                     print(f"zig-zig({search_key})")
-                    self.right_rotate(parent, search_key)
                     self.right_rotate(grand, search_key)
+                    self.right_rotate(parent, search_key)
                 elif parent.right == node and grand.right == parent:  # Zag-Zag
                     print(f"zag-zag({search_key})")
-                    self.left_rotate(parent, search_key)
                     self.left_rotate(grand, search_key)
+                    self.left_rotate(parent, search_key)
                 elif parent.left == node and grand.right == parent:  # Zig-Zag
                     print(f"zig-zag({search_key})")
                     self.right_rotate(parent, search_key)
